@@ -1,4 +1,23 @@
+@use "reset";
+@use "fonts";
+@use "base";
 
-@import "reset";
-@import "fonts";
-@import "base";
+body {
+  margin: 0 auto;
+  min-width: 360px;
+  max-width: 1920px;
+  font-size: 16px;
+  font-family: "Noto Sans TC", "Microsoft JhengHei", Arial, sans-serif;
+  line-height: 1.5;
+}
+a{
+  text-decoration: none;
+}
+button {
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+img{
+  width: 100%;
+}
