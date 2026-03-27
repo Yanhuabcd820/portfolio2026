@@ -156,6 +156,8 @@ import { getImage } from "@/utils/getImage.js";
   overflow: hidden;
   background-color: var(--blue);
   padding: 10% 0 13%;
+  position: relative;
+  z-index: 1;
   .container {
     width: 100%;
     max-width: 1536px;
