@@ -41,16 +41,15 @@ import { getImage } from "@/utils/getImage.js";
     display: flex;
     justify-content: center;
     position: relative;
-    z-index: 0;
-  }
-  .about-bg-deco {
-    position: absolute;
-    top: -16%;
-    right: -5%;
-    width: 78%;
-    max-width: 910px;
-    aspect-ratio: 1 / 1;
-    z-index: 1;
+    .about-bg-deco {
+      position: absolute;
+      top: -15%;
+      right: -10%;
+      width: 80%;
+      aspect-ratio: 1 / 1;
+      z-index: -1;
+      will-change: transform;
+    }
   }
   h2 {
     color: var(--green);
