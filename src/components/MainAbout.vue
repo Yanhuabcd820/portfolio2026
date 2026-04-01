@@ -1,5 +1,47 @@
 <script setup>
+import { onMounted } from "vue";
 import { getImage } from "@/utils/getImage.js";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+gsap.registerPlugin(ScrollTrigger);
+
+onMounted(() => {
+  const tl = gsap.timeline({
+    scrollTrigger: {
+      trigger: ".MainAbout",
+      start: "top 65%",
+      toggleActions: "play reverse play reverse",
+    },
+  });
+
+  tl.from(".MainAbout h2", {
+    opacity: 0,
+    x: -40,
+    duration: 1.2,
+    ease: "power2.out",
+  }).from(
+    ".MainAbout .about-content",
+    {
+      opacity: 0,
+      y: 30,
+      duration: 1.2,
+      ease: "power2.out",
+    },
+    "-=0.8",
+  );
+
+  gsap.to(".about-bg-deco img", {
+    rotation: 360,
+    ease: "circ.out",
+    scrollTrigger: {
+      trigger: ".MainAbout",
+      start: "top bottom",
+      end: "bottom top",
+      scrub: true,
+    },
+  });
+});
 </script>
 <template>
   <div class="MainAbout">
@@ -45,10 +87,13 @@ import { getImage } from "@/utils/getImage.js";
       position: absolute;
       top: -15%;
       right: -10%;
-      width: 80%;
+      width: 60%;
       aspect-ratio: 1 / 1;
       z-index: -1;
-      will-change: transform;
+      opacity: 0.6;
+      img {
+        will-change: transform;
+      }
     }
   }
   h2 {
@@ -117,13 +162,13 @@ import { getImage } from "@/utils/getImage.js";
   .MainAbout {
     .container {
       flex-direction: column;
-    }
-    .about-bg-deco {
-      top: 50%;
-      right: 50%;
-      transform: translate(50%, -50%);
-      width: 160%;
-      opacity: 0.6;
+      .about-bg-deco {
+        top: 50%;
+        right: initial;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 130vw;
+      }
     }
     h2 {
       padding-right: 3%;

@@ -1,43 +1,106 @@
-<script setup></script>
+<script setup>
+import { onMounted, useTemplateRef } from "vue";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+gsap.registerPlugin(ScrollTrigger);
+
+const skillItems = useTemplateRef("skillItem");
+
+onMounted(() => {
+  const mm = gsap.matchMedia();
+
+  mm.add("all", () => {
+    gsap.from(skillItems.value, {
+      opacity: 0,
+      y: "100vh",
+      stagger: 0.2,
+      clearProps: "y,opacity",
+      scrollTrigger: {
+        trigger: ".MainSkill",
+        start: "top bottom",
+        end: "bottom bottom",
+        scrub: true,
+      },
+    });
+
+    return () => {
+      gsap.set(skillItems.value, { clearProps: "all" });
+    };
+  });
+});
+
+const skills = [
+  {
+    title: "平面設計",
+    descriptions: [
+      {
+        details: [
+          "品牌識別視覺設計",
+          "獨立製作大型活動視覺、周邊製作物",
+          "社群媒體行銷圖文排版",
+          "使用軟體：Illustrator、Photoshop、Indesign、Animate",
+        ],
+      },
+    ],
+  },
+  {
+    title: "UI/UX 網頁設計",
+    descriptions: [
+      {
+        details: [
+          "製作 wireframe 並與客戶溝通討論最佳解決方案",
+          "為客戶的形象網站或購物平台網站進行設計",
+          "使用軟體：Figma、XD、Sketch",
+        ],
+      },
+    ],
+  },
+  {
+    title: "網頁前端",
+    descriptions: [
+      {
+        details: [
+          "使用 Vue3 前端框架",
+          "熟悉 html / CSS / JavaScript 及 RWD 跨平台響應式網頁設計",
+          "使用 SCSS 預處理器加速開發",
+        ],
+      },
+      {
+        details: [
+          "串接 RESTful API",
+          "vue federation 前端實作",
+          "使用 Git 版控進行多人協作",
+          "GTM、GA4 數據追蹤",
+        ],
+      },
+    ],
+  },
+];
+</script>
 <template>
-  <div class="MainSkill">
-    <div class="container">
+  <div class="MainSkill" ref="skillSection">
+    <div class="container" ref="skillContainer">
       <h2>SKILL</h2>
       <div class="skill-content">
-        <div class="skill-item">
-          <h3>平面設計</h3>
+        <div
+          v-for="(skill, idx) in skills"
+          :key="`skill-${idx}`"
+          class="skill-item"
+          ref="skillItem"
+        >
+          <h3>{{ skill.title }}</h3>
           <div class="skill-description">
-            <ul>
-              <li>品牌識別視覺設計</li>
-              <li>獨立製作大型活動視覺、周邊製作物</li>
-              <li>社群媒體行銷圖文排版</li>
-              <li>使用軟體：Illustrator、Photoshop、Indesign、Animate</li>
-            </ul>
-          </div>
-        </div>
-        <div class="skill-item">
-          <h3>UI/UX 網頁設計</h3>
-          <div class="skill-description">
-            <ul>
-              <li>製作 wireframe 並與客戶溝通討論最佳解決方案</li>
-              <li>為客戶的形象網站或購物平台網站進行設計</li>
-              <li>使用軟體：Figma、XD、Sketch</li>
-            </ul>
-          </div>
-        </div>
-        <div class="skill-item">
-          <h3>網頁前端</h3>
-          <div class="skill-description">
-            <ul>
-              <li>使用 Vue3 前端框架</li>
-              <li>熟悉 html / CSS / JavaScript 及 RWD 跨平台響應式網頁設計</li>
-              <li>使用 SCSS 預處理器加速開發</li>
-            </ul>
-            <ul>
-              <li>串接 RESTful API</li>
-              <li>vue federation 前端實作</li>
-              <li>使用 Git 版控進行多人協作</li>
-              <li>GTM、GA4 數據追蹤</li>
+            <ul
+              v-for="(description, dIdx) in skill.descriptions"
+              :key="`description-${dIdx}`"
+            >
+              <li
+                v-for="(detail, ddIdx) in description.details"
+                :key="`detail-${ddIdx}`"
+              >
+                {{ detail }}
+              </li>
             </ul>
           </div>
         </div>
@@ -50,10 +113,13 @@
 .MainSkill {
   background-color: var(--blue);
   min-height: 700px;
+  height: 400vh;
   overflow-x: clip;
   .container {
     max-width: 820px;
-    padding: 8% 0 12%;
+    padding: 8% 0 20%;
+    position: sticky;
+    top: 0;
   }
   h2 {
     position: relative;
@@ -69,6 +135,8 @@
       max-width: 400px;
       color: var(--white);
       position: relative;
+      will-change: transform;
+      animation-composition: add;
       &:nth-of-type(1) {
         transform: rotate(-4deg) translateX(calc(-50% - 100px));
         left: 50%;
@@ -133,8 +201,7 @@
 @media screen and (max-width: 768px) {
   .MainSkill {
     .container {
-      padding: 20% 0 14%;
-      border: 1px solid #fac;
+      padding: 20% 0 24%;
     }
     .skill {
       &-item {
@@ -162,7 +229,7 @@
 @media screen and (max-width: 520px) {
   .MainSkill {
     .container {
-      padding: 20% 0 44%;
+      padding: 20% 0 70%;
     }
     .skill {
       &-item {

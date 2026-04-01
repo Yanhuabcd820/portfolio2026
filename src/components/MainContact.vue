@@ -1,5 +1,54 @@
 <script setup>
+import { onMounted, useTemplateRef } from "vue";
 import { getImage } from "@/utils/getImage.js";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+gsap.registerPlugin(ScrollTrigger);
+
+const contactItems = useTemplateRef("contactItem");
+
+onMounted(() => {
+  contactItems.value.forEach((item) => {
+    gsap.from(item, {
+      opacity: 0,
+      y: 200,
+      duration: 1.2,
+      ease: "power2.out",
+      scrollTrigger: {
+        trigger: item,
+        start: "top bottom",
+        toggleActions: "play reverse play reverse",
+      },
+    });
+  });
+});
+const contacts = [
+  {
+    type: "email",
+    detail: "mamamiyahaha@gmail.com",
+    image: "contact-icon-mail.svg",
+    link: "mailto:mamamiyahaha@gmail.com",
+  },
+  {
+    type: "linkedin",
+    detail: "www.linkedin.com/in/yanhua-huang",
+    image: "contact-icon-linkedin.svg",
+    link: "https://www.linkedin.com/in/yanhua-huang",
+  },
+  {
+    type: "line",
+    detail: "yanhua820",
+    image: "contact-icon-line.svg",
+    link: "https://line.me/ti/p/zGvDp6TWaF",
+  },
+  {
+    type: "phone",
+    detail: "0952423200",
+    image: "contact-icon-phone.svg",
+    link: null,
+  },
+];
 </script>
 <template>
   <div class="MainContact">
@@ -8,35 +57,19 @@ import { getImage } from "@/utils/getImage.js";
         <h2>CONTACT</h2>
       </div>
       <div class="contact-content">
-        <div class="contact-item">
+        <div
+          class="contact-item"
+          v-for="(contact, index) in contacts"
+          :key="`contact-${index}`"
+          ref="contactItem"
+        >
           <div class="contact-icon">
-            <img :src="getImage(`contact-icon-mail.svg`)" alt="mail" />
+            <img :src="getImage(contact.image)" :alt="contact.type" />
           </div>
-          <a mailto="mamamiyahaha@gmail.com" target="_blank">
-            mamamiyahaha@gmail.com
+          <a v-if="contact.link" :href="contact.link" target="_blank">
+            {{ contact.detail }}
           </a>
-        </div>
-        <div class="contact-item">
-          <div class="contact-icon">
-            <img :src="getImage(`contact-icon-linkedin.svg`)" alt="linkedin" />
-          </div>
-          <a href="https://www.linkedin.com/in/yanhua-huang" target="_blank">
-            www.linkedin.com/in/yanhua-huang
-          </a>
-        </div>
-        <div class="contact-item">
-          <div class="contact-icon">
-            <img :src="getImage(`contact-icon-line.svg`)" alt="line" />
-          </div>
-          <a href="https://line.me/ti/p/zGvDp6TWaF" target="_blank">
-            yanhua820
-          </a>
-        </div>
-        <div class="contact-item">
-          <div class="contact-icon">
-            <img :src="getImage(`contact-icon-phone.svg`)" alt="phone" />
-          </div>
-          <p>0952423200</p>
+          <p v-else>{{ contact.detail }}</p>
         </div>
       </div>
     </div>
