@@ -77,6 +77,7 @@ onMounted(() => {
 <style lang="scss">
 .MainAbout {
   overflow-x: clip;
+  background-color: var(--white);
   .container {
     padding: 8% 0 10%;
     max-width: 1100px;
@@ -89,7 +90,7 @@ onMounted(() => {
       right: -10%;
       width: 60%;
       aspect-ratio: 1 / 1;
-      z-index: -1;
+      z-index: 0;
       opacity: 0.6;
       img {
         will-change: transform;

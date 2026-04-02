@@ -1,15 +1,117 @@
 <script setup>
+import { onMounted, ref, onBeforeUnmount } from "vue";
 import { getImage } from "@/utils/getImage.js";
+import gsap from "gsap";
+
+const textFadeIns = ref([]);
+const setTextFadeIn = (el) => {
+  if (!el) return;
+  if (!textFadeIns.value.includes(el)) textFadeIns.value.push(el);
+};
+
+onMounted(() => {
+  gsap.from([".banner-U svg", ".banner-2-1 svg"], {
+    strokeDashoffset: 1000,
+    duration: 2.6,
+    delay: 0.4,
+    ease: "power2.out",
+  });
+  gsap.from([".banner-A-3 svg", ".banner-6 svg"], {
+    strokeDashoffset: 1800,
+    duration: 2.2,
+    delay: 0.8,
+    ease: "power2.out",
+  });
+  gsap.from([".banner-H-2 svg", ".banner-T svg"], {
+    strokeDashoffset: 800,
+    duration: 2.4,
+    delay: 0.8,
+    ease: "power2.out",
+  });
+  gsap.from(".banner-2-2 svg", {
+    strokeDashoffset: 2000,
+    duration: 2.8,
+    delay: 0.5,
+    ease: "power2.out",
+  });
+  gsap
+    .timeline({ delay: 2.4 })
+    .from(".mainBanner-deco2", {
+      scale: 0,
+      opacity: 0,
+      duration: 1.6,
+      ease: "elastic.out",
+    })
+    .from(
+      ".mainBanner-deco4",
+      {
+        scale: 0,
+        opacity: 0,
+        duration: 1.6,
+        ease: "elastic.out",
+      },
+      "=",
+    )
+    .from(
+      ".mainBanner-deco1",
+      {
+        scale: 0,
+        opacity: 0,
+        duration: 1.6,
+        ease: "elastic.out",
+      },
+      "-=.8",
+    )
+    .from(
+      ".text-middle p",
+      {
+        y: 200,
+        opacity: 0,
+        duration: 1,
+        ease: "power2.out",
+      },
+      "<",
+    );
+
+  if (textFadeIns.value.length) {
+    for (let i = textFadeIns.value.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [textFadeIns.value[i], textFadeIns.value[j]] = [
+        textFadeIns.value[j],
+        textFadeIns.value[i],
+      ];
+    }
+    gsap.timeline({ delay: 0.4 }).from(textFadeIns.value, {
+      opacity: 0,
+      duration: 1.3,
+      ease: "power2.out",
+      stagger: 0.15,
+    });
+  }
+});
+
+onBeforeUnmount(() => {
+  textFadeIns.value = [];
+});
 </script>
 <template>
   <div class="MainBanner">
+    <div class="mainBanner-deco2">
+      <img :src="getImage(`banner-deco2.png`)" alt="" />
+    </div>
+    <div class="mainBanner-deco4">
+      <img :src="getImage(`banner-deco4.png`)" alt="" />
+    </div>
     <div class="container">
+      <div class="mainBanner-deco1">
+        <img :src="getImage(`banner-deco1.png`)" alt="" />
+      </div>
       <div class="text-top">
         <div class="text-1">
-          <span class="banner-H">
+          <span class="banner-H-1" :ref="setTextFadeIn">
             <img :src="getImage(`banner-H.svg`)" alt="" />
           </span>
-          <span class="banner-U">
+          <span class="banner-U stroke-fade-in">
             <svg viewBox="0 0 108 140">
               <path
                 class="cls-1"
@@ -17,21 +119,21 @@ import { getImage } from "@/utils/getImage.js";
               />
             </svg>
           </span>
-          <span class="banner-A-1">
+          <span class="banner-A-1" :ref="setTextFadeIn">
             <img :src="getImage(`banner-A-1.svg`)" alt="" />
           </span>
-          <span class="banner-N-1">
+          <span class="banner-N-1" :ref="setTextFadeIn">
             <img :src="getImage(`banner-N-1.svg`)" alt="" />
           </span>
-          <span class="banner-G banner-space">
+          <span class="banner-G banner-space" :ref="setTextFadeIn">
             <img :src="getImage(`banner-G.svg`)" alt="" />
           </span>
         </div>
         <div class="text-2">
-          <span class="banner-Y">
+          <span class="banner-Y" :ref="setTextFadeIn">
             <img :src="getImage(`banner-Y.svg`)" alt="" />
           </span>
-          <span class="banner-A-3">
+          <span class="banner-A-3 stroke-fade-in">
             <svg viewBox="0 0 129 140">
               <path
                 class="cls-1"
@@ -39,10 +141,10 @@ import { getImage } from "@/utils/getImage.js";
               />
             </svg>
           </span>
-          <span class="banner-N banner-space">
+          <span class="banner-N banner-space" :ref="setTextFadeIn">
             <img :src="getImage(`banner-N-1.svg`)" alt="" />
           </span>
-          <span class="banner-H">
+          <span class="banner-H-2 stroke-fade-in">
             <svg viewBox="0 0 105.32 140">
               <polygon
                 class="cls-1"
@@ -50,10 +152,10 @@ import { getImage } from "@/utils/getImage.js";
               />
             </svg>
           </span>
-          <span class="banner-U">
+          <span class="banner-U" :ref="setTextFadeIn">
             <img :src="getImage(`banner-U.svg`)" alt="" />
           </span>
-          <span class="banner-A-2">
+          <span class="banner-A-2" :ref="setTextFadeIn">
             <img :src="getImage(`banner-A-2.svg`)" alt="" />
           </span>
         </div>
@@ -63,16 +165,16 @@ import { getImage } from "@/utils/getImage.js";
       </div>
       <div class="text-bottom">
         <div class="text-3">
-          <span class="banner-P">
+          <span class="banner-P" :ref="setTextFadeIn">
             <img :src="getImage(`banner-P.svg`)" alt="" />
           </span>
-          <span class="banner-O-1">
+          <span class="banner-O-1" :ref="setTextFadeIn">
             <img :src="getImage(`banner-O-1.svg`)" alt="" />
           </span>
-          <span class="banner-R">
+          <span class="banner-R" :ref="setTextFadeIn">
             <img :src="getImage(`banner-R.svg`)" alt="" />
           </span>
-          <span class="banner-T">
+          <span class="banner-T stroke-fade-in">
             <svg viewBox="0 0 102.8 140">
               <polygon
                 class="cls-1"
@@ -82,24 +184,24 @@ import { getImage } from "@/utils/getImage.js";
           </span>
         </div>
         <div class="text-4">
-          <span class="banner-F">
+          <span class="banner-F" :ref="setTextFadeIn">
             <img :src="getImage(`banner-F.svg`)" alt="" />
           </span>
-          <span class="banner-O-2">
+          <span class="banner-O-2" :ref="setTextFadeIn">
             <img :src="getImage(`banner-O-2.svg`)" alt="" />
           </span>
-          <span class="banner-L">
+          <span class="banner-L" :ref="setTextFadeIn">
             <img :src="getImage(`banner-L.svg`)" alt="" />
           </span>
-          <span class="banner-I">
+          <span class="banner-I" :ref="setTextFadeIn">
             <img :src="getImage(`banner-I.svg`)" alt="" />
           </span>
-          <span class="banner-O-3 banner-space">
+          <span class="banner-O-3 banner-space" :ref="setTextFadeIn">
             <img :src="getImage(`banner-O-3.svg`)" alt="" />
           </span>
         </div>
         <div class="text-5">
-          <span class="banner-2-1">
+          <span class="banner-2-1 stroke-fade-in">
             <svg viewBox="0 0 96.19 140">
               <path
                 class="cls-1"
@@ -107,7 +209,7 @@ import { getImage } from "@/utils/getImage.js";
               />
             </svg>
           </span>
-          <span class="banner-0">
+          <span class="banner-0 stroke-fade-in">
             <svg viewBox="0 0 96.19 140">
               <path
                 class="cls-1"
@@ -122,7 +224,7 @@ import { getImage } from "@/utils/getImage.js";
               />
             </svg>
           </span>
-          <span class="banner-2-2">
+          <span class="banner-2-2 stroke-fade-in">
             <svg viewBox="0 0 96.19 140">
               <path
                 class="cls-1"
@@ -130,7 +232,7 @@ import { getImage } from "@/utils/getImage.js";
               />
             </svg>
           </span>
-          <span class="banner-6">
+          <span class="banner-6 stroke-fade-in">
             <svg viewBox="0 0 96.19 140">
               <ellipse
                 class="cls-1"
@@ -153,26 +255,49 @@ import { getImage } from "@/utils/getImage.js";
 
 <style lang="scss">
 .MainBanner {
-  overflow: hidden;
+  overflow-x: clip;
   background-color: var(--blue);
   padding: 10% 0 13%;
   position: relative;
   z-index: 1;
+  margin-top: -14px;
+  .mainBanner-deco2 {
+    position: absolute;
+    bottom: 7%;
+    left: -5%;
+    width: 344px;
+    z-index: -1;
+  }
+  .mainBanner-deco4 {
+    position: absolute;
+    bottom: -18%;
+    right: 12%;
+    width: 380px;
+    z-index: -1;
+  }
   .container {
+    position: relative;
     width: 100%;
     max-width: 1536px;
     margin: 0 auto;
+    .mainBanner-deco1 {
+      position: absolute;
+      top: -23%;
+      right: -8%;
+      width: 332px;
+      z-index: -1;
+    }
   }
   .text-top,
   .text-bottom {
     display: flex;
     justify-content: center;
   }
-  img {
-    height: 100%;
-    width: auto;
-  }
   [class^="banner-"] {
+    img {
+      height: 100%;
+      width: auto;
+    }
     svg {
       transform: scale(0.96);
       height: 100%;
@@ -185,13 +310,18 @@ import { getImage } from "@/utils/getImage.js";
   .text-5 {
     display: flex;
   }
-
+  .stroke-fade-in {
+    svg {
+      stroke-dasharray: 1000;
+      stroke-dashoffset: 0;
+    }
+  }
   .text-1 {
     width: 43.5%;
     [class^="banner-"] {
       padding-right: 2%;
     }
-    .banner-H {
+    .banner-H-1 {
       width: 14.64%;
     }
     .banner-U {
@@ -226,7 +356,7 @@ import { getImage } from "@/utils/getImage.js";
     .banner-N {
       width: 14.47%;
     }
-    .banner-H {
+    .banner-H-2 {
       width: 12.66%;
     }
     .banner-U {
@@ -237,18 +367,6 @@ import { getImage } from "@/utils/getImage.js";
       margin-left: -2.3%;
       position: relative;
       z-index: 0;
-      &::after {
-        position: absolute;
-        top: -60%;
-        left: 0;
-        content: "";
-        background-image: url("../assets/images/banner-deco1.png");
-        background-size: cover;
-        width: 275%;
-        aspect-ratio: 330 / 285;
-        background-repeat: no-repeat;
-        z-index: -1;
-      }
     }
   }
   .text-3 {
@@ -260,18 +378,6 @@ import { getImage } from "@/utils/getImage.js";
       width: 21.05%;
       position: relative;
       z-index: 0;
-      &::after {
-        position: absolute;
-        top: 5%;
-        right: 5%;
-        content: "";
-        background-image: url("../assets/images/banner-deco2.png");
-        background-size: cover;
-        width: 378%;
-        aspect-ratio: 344 / 312;
-        background-repeat: no-repeat;
-        z-index: -1;
-      }
     }
     .banner-O-1 {
       width: 26.31%;
@@ -341,6 +447,7 @@ import { getImage } from "@/utils/getImage.js";
     stroke-width: 4px;
   }
   .text-middle {
+    overflow: hidden;
     p {
       font-family: "Inter", sans-serif;
       color: var(--white);
@@ -351,8 +458,50 @@ import { getImage } from "@/utils/getImage.js";
     }
   }
 }
+@media screen and (max-width: 1200px) {
+  .MainBanner {
+    .container {
+      .mainBanner-deco1 {
+        top: -36%;
+        right: -15%;
+      }
+    }
+  }
+}
+@media screen and (max-width: 1024px) {
+  .MainBanner {
+    .mainBanner-deco2 {
+      bottom: -13%;
+      left: -10%;
+    }
+    .mainBanner-deco4 {
+      bottom: -20%;
+      right: 8%;
+      width: 280px;
+    }
+  }
+}
+@media screen and (max-width: 960px) {
+  .MainBanner {
+    .container {
+      .mainBanner-deco1 {
+        top: -20%;
+        right: -10%;
+        width: 200px;
+      }
+    }
+  }
+}
 @media screen and (max-width: 768px) {
   .MainBanner {
+    .mainBanner-deco2 {
+      bottom: 15%;
+      left: -15%;
+      width: 200px;
+    }
+    .mainBanner-deco4 {
+      display: none;
+    }
     .text-top,
     .text-bottom {
       flex-direction: column;
@@ -366,20 +515,10 @@ import { getImage } from "@/utils/getImage.js";
     }
     .text-2 {
       width: 83.3%;
-      .banner-A-2 {
-        &::after {
-          top: -100%;
-        }
-      }
     }
     .text-3 {
       width: 49.1%;
       padding-bottom: 3%;
-      .banner-P {
-        &::after {
-          right: 45%;
-        }
-      }
     }
     .text-4 {
       width: 56.3%;

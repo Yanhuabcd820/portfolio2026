@@ -78,6 +78,7 @@ const contacts = [
 
 <style lang="scss">
 .MainContact {
+  overflow: hidden;
   background-color: var(--blue);
   background-size: 200px 200px;
   background-image:

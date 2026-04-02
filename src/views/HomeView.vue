@@ -1,4 +1,5 @@
 <script setup>
+import MainHeader from "@/components/MainHeader.vue";
 import MainBanner from "@/components/MainBanner.vue";
 import MainAbout from "@/components/MainAbout.vue";
 import MainSkill from "@/components/MainSkill.vue";
@@ -9,6 +10,7 @@ import MainContact from "@/components/MainContact.vue";
 
 <template>
   <main>
+    <MainHeader />
     <MainBanner />
     <MainAbout />
     <MainSkill />
@@ -17,3 +19,8 @@ import MainContact from "@/components/MainContact.vue";
     <MainContact />
   </main>
 </template>
+<style lang="scss">
+main {
+  background-color: var(--blue);
+}
+</style>
