@@ -115,7 +115,7 @@ const works = [
 ];
 </script>
 <template>
-  <div class="MainWork">
+  <div class="MainWork" id="work">
     <div class="container">
       <div class="text-container">
         <div class="text-wrap">

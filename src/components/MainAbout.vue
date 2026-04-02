@@ -44,7 +44,7 @@ onMounted(() => {
 });
 </script>
 <template>
-  <div class="MainAbout">
+  <div class="MainAbout" id="about">
     <div class="container">
       <div class="about-bg-deco">
         <img :src="getImage(`about-deco-3.png`)" alt="" />

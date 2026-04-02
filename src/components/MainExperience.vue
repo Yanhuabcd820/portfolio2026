@@ -72,7 +72,7 @@ const experiences = [
 ];
 </script>
 <template>
-  <div class="MainExperience">
+  <div class="MainExperience" id="experience">
     <div class="container" ref="experienceContainer">
       <div class="container-inner">
         <h2 class="vertical">

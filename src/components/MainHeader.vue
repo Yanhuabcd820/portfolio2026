@@ -1,11 +1,42 @@
 <script setup>
+import { useRoute } from "vue-router";
 import { getImage } from "@/utils/getImage.js";
+import { useMenuSwitch } from "@/composables/useMenuSwitch";
+
+const route = useRoute();
+
+const { isMenuOpen, switchMenu, closeMenu } = useMenuSwitch();
+
+const links = [
+  {
+    title: "About",
+    href: "#about",
+  },
+  {
+    title: "Experience",
+    href: "#experience",
+  },
+  {
+    title: "Work",
+    href: "#work",
+  },
+  {
+    title: "Resume",
+    href: "#",
+  },
+  {
+    title: "Contact",
+    href: "#contact",
+  },
+];
 </script>
 <template>
-  <header>
+  <header :class="{ active: isMenuOpen }">
     <h1>
       <div class="logo">
-        <img :src="getImage(`logo.svg`)" alt="Huang Yan Hua portfolio 2026" />
+        <a href="#"
+          ><img :src="getImage(`logo.svg`)" alt="Huang Yan Hua portfolio 2026"
+        /></a>
       </div>
     </h1>
     <div class="marquee">
@@ -18,30 +49,27 @@ import { getImage } from "@/utils/getImage.js";
         are my chopsticks.
       </p>
     </div>
-    <button class="menuCheck">
+    <button
+      class="hamburger"
+      :class="{ active: isMenuOpen }"
+      @click="switchMenu"
+    >
       <div class="bar-group">
         <div class="bar"></div>
         <div class="bar"></div>
         <div class="bar"></div>
       </div>
     </button>
-    <nav>
+    <nav :class="{ active: isMenuOpen }">
       <ul>
-        <li><a href="#about">About</a> <span>/</span></li>
-        <li>
-          <a href="#experience">Experience</a>
-          <span>/</span>
-        </li>
-        <li>
-          <a href="#works">Works</a>
-          <span>/</span>
-        </li>
-        <li>
-          <a href="#resume">Resume</a>
-          <span>/</span>
-        </li>
-        <li>
-          <a href="#contact">Contact</a>
+        <li v-for="(link, index) in links" :key="`link-${index}`">
+          <router-link
+            @click="closeMenu"
+            :to="link.href"
+            :class="{ active: route.hash === link.href }"
+            >{{ link.title }}</router-link
+          >
+          <span v-if="index !== links.length - 1">/</span>
         </li>
       </ul>
     </nav>
@@ -51,18 +79,22 @@ import { getImage } from "@/utils/getImage.js";
 <style lang="scss">
 header {
   color: var(--white);
-  background-color: var(--blue);
   display: flex;
   align-items: flex-start;
+  position: sticky;
+  top: 0;
+  z-index: 100;
   h1 {
     padding: 24px 44px;
     border-right: 4px solid var(--white);
     border-bottom: 4px solid var(--white);
+    background-color: var(--blue);
     .logo {
       width: 92px;
     }
   }
   .marquee {
+    background-color: var(--blue);
     padding: 24px 0;
     border-right: 4px solid var(--white);
     border-bottom: 4px solid var(--white);
@@ -74,7 +106,8 @@ header {
       letter-spacing: 3px;
     }
   }
-  button.menuCheck {
+  button.hamburger {
+    background-color: var(--blue);
     display: none;
     width: 50px;
     height: 50px;
@@ -109,7 +142,7 @@ header {
         bottom: 0;
       }
     }
-    &.isMenuOpen {
+    &.active {
       .bar {
         &:nth-of-type(1) {
           top: 50%;
@@ -128,6 +161,7 @@ header {
     }
   }
   nav {
+    background-color: var(--blue);
     padding: 24px 20px;
     border-bottom: 4px solid var(--white);
 
@@ -135,9 +169,15 @@ header {
       display: flex;
       li {
         display: flex;
+        margin-left: 0rem;
         a {
           color: var(--white);
           padding: 0 24px;
+          transition: 0.5s;
+          &.active {
+            color: var(--yellow);
+            font-weight: bold;
+          }
         }
       }
     }
@@ -178,23 +218,26 @@ header {
     display: flex;
     flex-wrap: wrap;
     width: 100%;
-    &.isMenuOpen {
+    &.active {
       height: 100vh;
-      position: absolute;
-      z-index: 20;
     }
     .marquee {
       width: 40%;
     }
-    button.menuCheck {
+    button.hamburger {
       display: flex;
     }
     nav {
       display: none;
       width: 100%;
-      height: calc(100% - 64px);
+      height: calc(100% - 50px);
       padding: 0px;
       border-bottom: none;
+      &.active {
+        display: flex;
+        margin-top: -14px;
+        z-index: -1;
+      }
       ul {
         justify-content: center;
         flex-direction: column;
@@ -213,9 +256,6 @@ header {
             margin: 0 auto;
           }
         }
-      }
-      &.isMenuOpen {
-        display: flex;
       }
     }
   }

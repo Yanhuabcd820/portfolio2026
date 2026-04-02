@@ -51,7 +51,7 @@ const contacts = [
 ];
 </script>
 <template>
-  <div class="MainContact">
+  <div class="MainContact" id="contact">
     <div class="container">
       <div class="text-container">
         <h2>CONTACT</h2>
