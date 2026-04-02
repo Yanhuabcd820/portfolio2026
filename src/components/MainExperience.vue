@@ -115,6 +115,7 @@ const experiences = [
 
 <style lang="scss">
 .MainExperience {
+  overflow: hidden;
   background-image: repeating-linear-gradient(
     -45deg,
     var(--yellow),

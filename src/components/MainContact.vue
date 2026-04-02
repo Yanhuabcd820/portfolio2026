@@ -134,7 +134,7 @@ const contacts = [
         content: "";
         width: 53px;
         height: 41px;
-        background-image: url("@/assets/images/contact-deco.png/");
+        background-image: url("@/assets/images/contact-deco.png");
         background-repeat: no-repeat;
         background-size: cover;
       }

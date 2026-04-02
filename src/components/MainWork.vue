@@ -32,13 +32,13 @@ const updateWorkContentAnimation = () => {
       toggleActions: "play reverse play reverse",
     },
   });
-  tl.to(".MainWork h2", {
+  tl.to(".MainWork .text-image", {
     opacity: 1,
     duration: 0.6,
     ease: "power2.out",
   })
     .from(
-      ".MainWork h2:nth-of-type(2)",
+      ".MainWork .text-image:nth-of-type(2)",
       {
         top: 0,
         left: 0,
@@ -48,7 +48,7 @@ const updateWorkContentAnimation = () => {
       "-=0.6",
     )
     .from(
-      ".MainWork h2:nth-of-type(3)",
+      ".MainWork .text-image:nth-of-type(3)",
       {
         top: 0,
         left: 0,
@@ -58,7 +58,7 @@ const updateWorkContentAnimation = () => {
       "-=0.6",
     )
     .from(
-      ".MainWork h2:nth-of-type(4)",
+      ".MainWork .text-image:nth-of-type(4)",
       {
         top: 0,
         left: 0,
@@ -82,9 +82,9 @@ const works = [
   {
     title: "活動管理平台",
     description: [
-      "匯集過往的作品，並使用 Vue3 製作本作品集。",
-      "使用vue-federation整合header，減少日後修改表頭的時間。",
-      "於本專案負責 Vue3、切版 (html/css/Javascript)、UI/UX 設計。",
+      "使用 Vue 3 與 vue-router 製作多分頁 SPA",
+      "串接 RESTful API，確保資訊即時更新",
+      "使用 vue federation 技術，將共用 Header 元件串連 6 個網站，提升多專案維運效率",
     ],
     image: "work-1.png",
     demoLink: "#",
@@ -105,7 +105,7 @@ const works = [
     title: "婦權促進發展基金會 官網",
     description: [
       "使用 Vue 3 與 vue-router 製作多分頁 SPA",
-      "串接 RESTful API 取得即時資料，確保資訊即時更新",
+      "串接 RESTful API，確保資訊即時更新",
       "使用 vue federation 技術，將共用 Header 元件串連 6 個網站，提升多專案維運效率",
     ],
     image: "work-3.png",
@@ -129,10 +129,19 @@ const works = [
     <div class="container">
       <div class="text-container">
         <div class="text-wrap">
-          <h2>WORK</h2>
-          <h2>WORK</h2>
-          <h2>WORK</h2>
-          <h2>WORK</h2>
+          <div class="text-image">
+            <img :src="getImage(`work-title.png`)" alt="Work" />
+          </div>
+
+          <div class="text-image">
+            <img :src="getImage(`work-title.png`)" alt="Work" />
+          </div>
+          <div class="text-image">
+            <img :src="getImage(`work-title.png`)" alt="Work" />
+          </div>
+          <div class="text-image">
+            <img :src="getImage(`work-title.png`)" alt="Work" />
+          </div>
         </div>
       </div>
       <div class="work-content" ref="workContent">
@@ -193,37 +202,31 @@ const works = [
       position: relative;
       z-index: 0;
     }
-  }
-  h2 {
-    color: var(--yellow);
-    opacity: 0;
-    text-shadow:
-      2px 2px var(--black),
-      2px -2px var(--black),
-      -2px 2px var(--black),
-      -2px -2px var(--black);
-    will-change: transform;
-    &:nth-of-type(1) {
-      top: 0px;
-      left: 0px;
-    }
-    &:nth-of-type(2) {
-      top: 8px;
-      left: 10px;
-      position: absolute;
-      z-index: 1;
-    }
-    &:nth-of-type(3) {
-      top: 16px;
-      left: 18px;
-      position: absolute;
-      z-index: 2;
-    }
-    &:nth-of-type(4) {
-      top: 24px;
-      left: 26px;
-      position: absolute;
-      z-index: 3;
+    &-image {
+      width: 340px;
+      opacity: 0;
+      &:nth-of-type(1) {
+        top: 0px;
+        left: 0px;
+      }
+      &:nth-of-type(2) {
+        top: 8px;
+        left: 10px;
+        position: absolute;
+        z-index: 1;
+      }
+      &:nth-of-type(3) {
+        top: 16px;
+        left: 18px;
+        position: absolute;
+        z-index: 2;
+      }
+      &:nth-of-type(4) {
+        top: 24px;
+        left: 26px;
+        position: absolute;
+        z-index: 3;
+      }
     }
   }
   .work {
@@ -240,7 +243,6 @@ const works = [
       width: 420px;
     }
     &-item {
-      will-change: transform;
       padding: 20px 42px 20px 20px;
       border: 1px solid var(--black);
       background-color: var(--yellow);
@@ -303,6 +305,11 @@ const works = [
     .container {
       padding: 15% 0 20%;
     }
+    .text {
+      &-image {
+        width: 272px;
+      }
+    }
     .work {
       &-content {
         gap: 40px;
@@ -339,7 +346,7 @@ const works = [
 @media screen and (max-width: 540px) {
   .MainWork {
     .container {
-      padding: 30% 0 20%;
+      padding: 20% 0 20%;
     }
     .work {
       &-content {
