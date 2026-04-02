@@ -1,5 +1,5 @@
 <script setup>
-import { ref, onMounted, onUnmounted, useTemplateRef, watch } from "vue";
+import { ref, onMounted, useTemplateRef, watch } from "vue";
 import { getImage } from "@/utils/getImage.js";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -119,8 +119,8 @@ const works = [
       "使用 GSAP 製作滾動與進場動態效果，提升視覺效果與互動性",
     ],
     image: "work-4.png",
-    demoLink: "#",
-    githubLink: "#",
+    demoLink: "https://github.com/Yanhuabcd820/portfolio2026",
+    githubLink: "https://yanhuabcd820.github.io/portfolio2026/",
   },
 ];
 </script>
