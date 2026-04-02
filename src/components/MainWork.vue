@@ -19,8 +19,8 @@ const updateWorkContentAnimation = () => {
     x: (workContentWidth - workItemsWidth) * -1,
     scrollTrigger: {
       trigger: ".MainWork",
-      start: "top top-=300vh",
-      end: "bottom bottom+=200vh",
+      start: "top top-100vh",
+      end: "bottom bottom+100vh",
       scrub: true,
     },
   });
@@ -80,7 +80,7 @@ onMounted(() => {
 
 const works = [
   {
-    title: "作品集網站",
+    title: "活動管理平台",
     description: [
       "匯集過往的作品，並使用 Vue3 製作本作品集。",
       "使用vue-federation整合header，減少日後修改表頭的時間。",
@@ -91,24 +91,34 @@ const works = [
     githubLink: "#",
   },
   {
-    title: "作品集網站",
+    title: "全家 二度就業招募網頁",
     description: [
-      "匯集過往的作品，並使用 Vue3 製作本作品集。",
-      "使用vue-federation整合header，減少日後修改表頭的時間。",
-      "於本專案負責 Vue3、切版 (html/css/Javascript)、UI/UX 設計。",
+      "使用 Vue 3 開發",
+      "使用 vue federation 技術，將共用 Header 元件串連 6 個網站，提升多專案維運效率",
+      "靜態資料抽離，讓非技術人員也能輕鬆維護內容",
     ],
-    image: "work-1.png",
-    demoLink: "#",
-    githubLink: "#",
+    image: "work-2.png",
+    demoLink: "https://events.104.com.tw/familymart/20250217100325/",
+    githubLink: null,
+  },
+  {
+    title: "婦權促進發展基金會 官網",
+    description: [
+      "使用 Vue 3 與 vue-router 製作多分頁 SPA",
+      "串接 RESTful API 取得即時資料，確保資訊即時更新",
+      "使用 vue federation 技術，將共用 Header 元件串連 6 個網站，提升多專案維運效率",
+    ],
+    image: "work-3.png",
+    demoLink: "https://events.104.com.tw/familymart/20250318111515/",
+    githubLink: null,
   },
   {
     title: "作品集網站",
     description: [
-      "匯集過往的作品，並使用 Vue3 製作本作品集。",
-      "使用vue-federation整合header，減少日後修改表頭的時間。",
-      "於本專案負責 Vue3、切版 (html/css/Javascript)、UI/UX 設計。",
+      "使用 Vue 3 作為主要開發框架，提升組件化與維護性",
+      "使用 GSAP 製作滾動與進場動態效果，提升視覺效果與互動性",
     ],
-    image: "work-1.png",
+    image: "work-4.png",
     demoLink: "#",
     githubLink: "#",
   },
@@ -146,8 +156,12 @@ const works = [
               </p>
             </div>
             <div class="work-btn-wrap">
-              <a :href="work.demoLink" target="_blank">DEMO</a>
-              <a :href="work.githubLink" target="_blank">GITHUB</a>
+              <a v-if="work.demoLink" :href="work.demoLink" target="_blank"
+                >DEMO</a
+              >
+              <a v-if="work.githubLink" :href="work.githubLink" target="_blank"
+                >GITHUB</a
+              >
             </div>
           </div>
         </div>
@@ -164,7 +178,7 @@ const works = [
 
   .container {
     padding: 11% 0 10%;
-    max-width: 1000px;
+    max-width: 800px;
     height: 100vh;
     position: sticky;
     top: 0;
@@ -227,11 +241,13 @@ const works = [
     }
     &-item {
       will-change: transform;
-      padding: 16px;
+      padding: 20px 42px 20px 20px;
       border: 1px solid var(--black);
       background-color: var(--yellow);
       display: flex;
+      align-items: center;
       gap: 32px;
+      width: 720px;
       box-shadow:
         12px 12px 0 0 var(--yellow),
         13px 13px 0 0 var(--black),
@@ -240,9 +256,14 @@ const works = [
         11px 13px 0 0 var(--black);
     }
     &-image {
-      width: 480px;
+      overflow: hidden;
+      width: 320px;
+      flex-shrink: 0;
+      aspect-ratio: 5.5 / 3;
+      background-color: var(--white);
     }
     &-text {
+      padding-block: 16px;
       display: flex;
       flex-direction: column;
       flex-grow: 1;
@@ -255,17 +276,14 @@ const works = [
       padding-top: 20px;
 
       p {
-        line-height: 1.5;
-        &:nth-last-of-type(1) {
-          padding-top: 20px;
-        }
+        line-height: 1.75;
       }
     }
     &-btn-wrap {
       display: flex;
       gap: 24px;
       font-size: 20px;
-      margin-top: 40px;
+      margin-top: 24px;
       flex-grow: 1;
       a {
         align-self: flex-end;
@@ -280,7 +298,7 @@ const works = [
     }
   }
 }
-@media screen and (max-width: 1024px) {
+@media screen and (max-width: 768px) {
   .MainWork {
     .container {
       padding: 15% 0 20%;
@@ -303,12 +321,17 @@ const works = [
         width: 100%;
       }
       &-text {
+        padding-block: 0;
         h3 {
-          font-size: 28px;
+          font-size: 24px;
         }
       }
       &-description {
         padding-top: 12px;
+      }
+      &-btn-wrap {
+        justify-content: center;
+        margin-top: 16px;
       }
     }
   }
