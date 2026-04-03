@@ -13,7 +13,7 @@ onMounted(() => {
       skewY: 10,
       opacity: 0,
       y: 200,
-      duration: 1.2,
+      duration: 0.8,
       ease: "power2.out",
       scrollTrigger: {
         trigger: item,

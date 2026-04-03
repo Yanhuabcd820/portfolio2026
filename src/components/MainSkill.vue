@@ -8,25 +8,17 @@ gsap.registerPlugin(ScrollTrigger);
 const skillItems = useTemplateRef("skillItem");
 
 onMounted(() => {
-  const mm = gsap.matchMedia();
-
-  mm.add("all", () => {
-    gsap.from(skillItems.value, {
-      opacity: 0,
-      y: "100vh",
-      stagger: 0.2,
-      clearProps: "y,opacity",
-      scrollTrigger: {
-        trigger: ".MainSkill",
-        start: "top bottom",
-        end: "bottom bottom",
-        scrub: true,
-      },
-    });
-
-    return () => {
-      gsap.set(skillItems.value, { clearProps: "all" });
-    };
+  gsap.from(skillItems.value, {
+    opacity: 0,
+    y: 200,
+    stagger: 0.2,
+    ease: "power2.out",
+    scrollTrigger: {
+      trigger: ".MainSkill",
+      start: "top bottom",
+      end: "bottom bottom",
+      scrub: true,
+    },
   });
 });
 
