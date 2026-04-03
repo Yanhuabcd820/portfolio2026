@@ -99,6 +99,7 @@ const contacts = [
   .container {
     padding: 10% 0 12%;
     max-width: 1240px;
+    width: 90%;
   }
   h2 {
     color: var(--white);

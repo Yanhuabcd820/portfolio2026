@@ -140,7 +140,6 @@ const works = [
           <div class="text-image">
             <img :src="getImage(`work-title.png`)" alt="Work" />
           </div>
-
           <div class="text-image">
             <img :src="getImage(`work-title.png`)" alt="Work" />
           </div>
@@ -153,9 +152,6 @@ const works = [
         </div>
       </div>
       <div class="work-content" ref="workContent">
-        <div class="work-deco">
-          <img :src="getImage(`work-deco.png`)" alt="Decoration" />
-        </div>
         <div
           class="work-item"
           v-for="(work, index) in works"
@@ -198,6 +194,7 @@ const works = [
     height: 100vh;
     position: sticky;
     top: 0;
+    position: relative;
   }
   .text {
     &-container {
@@ -242,12 +239,6 @@ const works = [
       gap: 80px;
       width: max-content;
       position: relative;
-    }
-    &-deco {
-      position: absolute;
-      left: 0%;
-      bottom: -200px;
-      width: 420px;
     }
     &-item {
       padding: 20px 42px 20px 20px;
@@ -346,9 +337,6 @@ const works = [
         gap: 40px;
         margin-left: calc((100% - 486px) / 2);
       }
-      &-deco {
-        width: 400px;
-      }
       &-item {
         width: 420px;
         flex-direction: column;
@@ -379,9 +367,6 @@ const works = [
     .work {
       &-content {
         margin-left: calc((100% - 342px) / 2);
-      }
-      &-deco {
-        width: 300px;
       }
       &-item {
         width: 308px;
