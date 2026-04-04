@@ -1,0 +1,34 @@
+# node_modules (npm/yarn/pnpm 依賴)
+node_modules/
+
+# Vite/webpack 等產生的暫存檔
+dist/
+build/
+.vite/
+.cache/
+
+# 作業系統產生的檔案
+.DS_Store
+Thumbs.db
+
+# 編輯器設定
+.vscode/
+.idea/
+
+# 測試 coverage
+coverage/
+
+# dotenv 檔案（如有敏感資訊）
+.env
+.env.*
+!.env.example
+
+# log 檔
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# gh-pages、submodule 產生的暫存
+*.gh-pages/
+*.publish/
+*.submodule/
