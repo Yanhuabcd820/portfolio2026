@@ -127,8 +127,8 @@ const works = [
       "使用 GSAP 製作滾動與進場動態效果，提升視覺效果與互動性",
     ],
     image: "work-4.png",
-    demoLink: "https://github.com/Yanhuabcd820/portfolio2026",
-    githubLink: "https://yanhuabcd820.github.io/portfolio2026/",
+    demoLink: "https://yanhuabcd820.github.io/portfolio2026/",
+    githubLink: "https://github.com/Yanhuabcd820/portfolio2026",
   },
 ];
 </script>
