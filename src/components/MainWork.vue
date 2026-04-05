@@ -95,8 +95,8 @@ const works = [
       "登入驗證、權限控管與錯誤頁導向",
     ],
     image: "work-1.png",
-    demoLink: "https://github.com/Yanhuabcd820/event_admin",
-    githubLink: "https://yanhuabcd820.github.io/event_admin/",
+    demoLink: "https://yanhuabcd820.github.io/event_admin/",
+    githubLink: "https://github.com/Yanhuabcd820/event_admin",
   },
   {
     title: "全家 二度就業招募網頁",
@@ -117,7 +117,7 @@ const works = [
       "靜態資料抽離，讓非技術人員也能輕鬆維護內容",
     ],
     image: "work-3.png",
-    demoLink: "https://events.104.com.tw/familymart/20250318111515/",
+    demoLink: "https://events.104.com.tw/fwrpd/20240108111424/",
     githubLink: null,
   },
   {
