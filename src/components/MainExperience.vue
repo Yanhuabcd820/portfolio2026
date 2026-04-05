@@ -184,8 +184,11 @@ const experiences = [
         line-height: 1;
         color: var(--yellow);
         font-weight: bold;
+        display: flex;
+        flex-wrap: wrap;
+        line-height: 1.25;
         span {
-          font-size: 20px;
+          font-size: 18px;
           padding-left: 8px;
           font-weight: normal;
         }

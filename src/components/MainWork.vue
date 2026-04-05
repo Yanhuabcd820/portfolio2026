@@ -90,20 +90,20 @@ const works = [
   {
     title: "活動管理平台",
     description: [
-      "使用 Vue3 與 vue-router 製作多頁 SPA",
-      "串接 RESTful API，確保資訊即時更新",
-      "使用 vue federation 技術，將共用 Header 元件串連 6 個網站，提升多專案維運效率",
+      "以 Vue3 + TypeScript + vue-router 多頁式 SPA",
+      "模擬 RESTful API，前端自建假資料，還原活動管理流程",
+      "登入驗證、權限控管與錯誤頁導向",
     ],
     image: "work-1.png",
-    demoLink: "#",
-    githubLink: "#",
+    demoLink: "https://yanhuabcd820.github.io/event_admin/",
+    githubLink: "https://github.com/Yanhuabcd820/event_admin",
   },
   {
     title: "全家 二度就業招募網頁",
     description: [
       "使用 Vue3 開發",
       "使用 vue federation，將共用 Header 串連 6 個網站，提升多專案維運效率",
-      "靜態資料抽離，讓非技術人員也能輕鬆維護內容",
+      "靜態資料抽離，方便內容維護",
     ],
     image: "work-2.png",
     demoLink: "https://events.104.com.tw/familymart/20250217100325/",
@@ -114,10 +114,10 @@ const works = [
     description: [
       "使用 Vue3 與 vue-router 製作多頁 SPA",
       "串接 RESTful API，確保資訊即時更新",
-      "使用 vue federation 技術，將共用 Header 元件串連 6 個網站，提升多專案維運效率",
+      "靜態資料抽離，讓非技術人員也能輕鬆維護內容",
     ],
     image: "work-3.png",
-    demoLink: "https://events.104.com.tw/familymart/20250318111515/",
+    demoLink: "https://events.104.com.tw/fwrpd/20240108111424/",
     githubLink: null,
   },
   {
@@ -140,7 +140,6 @@ const works = [
           <div class="text-image">
             <img :src="getImage(`work-title.png`)" alt="Work" />
           </div>
-
           <div class="text-image">
             <img :src="getImage(`work-title.png`)" alt="Work" />
           </div>
@@ -153,9 +152,6 @@ const works = [
         </div>
       </div>
       <div class="work-content" ref="workContent">
-        <div class="work-deco">
-          <img :src="getImage(`work-deco.png`)" alt="Decoration" />
-        </div>
         <div
           class="work-item"
           v-for="(work, index) in works"
@@ -198,6 +194,7 @@ const works = [
     height: 100vh;
     position: sticky;
     top: 0;
+    position: relative;
   }
   .text {
     &-container {
@@ -243,12 +240,6 @@ const works = [
       width: max-content;
       position: relative;
     }
-    &-deco {
-      position: absolute;
-      left: 0%;
-      bottom: -200px;
-      width: 420px;
-    }
     &-item {
       padding: 20px 42px 20px 20px;
       border: 1px solid var(--black);
@@ -292,7 +283,7 @@ const works = [
     &-btn-wrap {
       display: flex;
       gap: 24px;
-      font-size: 20px;
+      font-size: 18px;
       margin-top: 24px;
       flex-grow: 1;
       a {
@@ -346,9 +337,6 @@ const works = [
         gap: 40px;
         margin-left: calc((100% - 486px) / 2);
       }
-      &-deco {
-        width: 400px;
-      }
       &-item {
         width: 420px;
         flex-direction: column;
@@ -379,9 +367,6 @@ const works = [
     .work {
       &-content {
         margin-left: calc((100% - 342px) / 2);
-      }
-      &-deco {
-        width: 300px;
       }
       &-item {
         width: 308px;

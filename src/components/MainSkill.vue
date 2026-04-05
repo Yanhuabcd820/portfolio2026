@@ -79,21 +79,22 @@ const skills = [
           v-for="(skill, idx) in skills"
           :key="`skill-${idx}`"
           class="skill-item"
-          ref="skillItem"
         >
-          <h3>{{ skill.title }}</h3>
-          <div class="skill-description">
-            <ul
-              v-for="(description, dIdx) in skill.descriptions"
-              :key="`description-${dIdx}`"
-            >
-              <li
-                v-for="(detail, ddIdx) in description.details"
-                :key="`detail-${ddIdx}`"
+          <div class="skill" ref="skillItem">
+            <h3>{{ skill.title }}</h3>
+            <div class="skill-description">
+              <ul
+                v-for="(description, dIdx) in skill.descriptions"
+                :key="`description-${dIdx}`"
               >
-                {{ detail }}
-              </li>
-            </ul>
+                <li
+                  v-for="(detail, ddIdx) in description.details"
+                  :key="`detail-${ddIdx}`"
+                >
+                  {{ detail }}
+                </li>
+              </ul>
+            </div>
           </div>
         </div>
       </div>
@@ -105,7 +106,7 @@ const skills = [
 .MainSkill {
   background-color: var(--blue);
   min-height: 700px;
-  height: 400vh;
+  height: 300vh;
   overflow-x: clip;
   .container {
     max-width: 820px;
