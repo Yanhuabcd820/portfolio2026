@@ -22,7 +22,8 @@ const links = [
   },
   {
     title: "Resume",
-    href: "#",
+    href: "/portfolio2026/src/assets/images/resume_yanhua_huang.pdf",
+    ifFile: true,
   },
   {
     title: "Contact",
@@ -64,10 +65,18 @@ const links = [
       <ul>
         <li v-for="(link, index) in links" :key="`link-${index}`">
           <router-link
+            v-if="!link.ifFile"
             @click="closeMenu"
             :to="link.href"
             :class="{ active: route.hash === link.href }"
             >{{ link.title }}</router-link
+          >
+          <a
+            v-else
+            @click="closeMenu"
+            href="/portfolio2026/src/assets/images/resume_yanhua_huang.pdf"
+            target="_blank"
+            >{{ link.title }}</a
           >
           <span v-if="index !== links.length - 1">/</span>
         </li>
