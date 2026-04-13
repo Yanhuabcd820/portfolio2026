@@ -88,11 +88,21 @@ onMounted(() => {
 
 const works = [
   {
+    title: "作品集網站",
+    description: [
+      "使用 Vue3 作為主要開發框架，提升組件化與維護性",
+      "使用 GSAP 製作滾動與進場動態效果，提升視覺效果與互動性",
+    ],
+    image: "work-4.png",
+    demoLink: "https://yanhuabcd820.github.io/portfolio2026/",
+    githubLink: "https://github.com/Yanhuabcd820/portfolio2026",
+  },
+  {
     title: "活動管理平台",
     description: [
-      "以 Vue3 + TypeScript + vue-router 多頁式 SPA",
-      "模擬 RESTful API，前端自建假資料，還原活動管理流程",
-      "登入驗證、權限控管與錯誤頁導向",
+      "Vue 3 + TypeScript 打造高維護性 SPA",
+      "整合 Supabase 實作活動資料 CRUD，處理非同步資料存取",
+      "Supabase Auth 實作登入驗證與權限",
     ],
     image: "work-1.png",
     demoLink: "https://yanhuabcd820.github.io/event_admin/",
@@ -119,16 +129,6 @@ const works = [
     image: "work-3.png",
     demoLink: "https://events.104.com.tw/fwrpd/20240108111424/",
     githubLink: null,
-  },
-  {
-    title: "作品集網站",
-    description: [
-      "使用 Vue3 作為主要開發框架，提升組件化與維護性",
-      "使用 GSAP 製作滾動與進場動態效果，提升視覺效果與互動性",
-    ],
-    image: "work-4.png",
-    demoLink: "https://yanhuabcd820.github.io/portfolio2026/",
-    githubLink: "https://github.com/Yanhuabcd820/portfolio2026",
   },
 ];
 </script>
