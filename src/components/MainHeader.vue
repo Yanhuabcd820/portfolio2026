@@ -2,6 +2,7 @@
 import { useRoute } from "vue-router";
 import { getImage } from "@/utils/getImage.js";
 import { useMenuSwitch } from "@/composables/useMenuSwitch";
+import resumePdf from "@/assets/images/resume_yanhua_huang.pdf";
 
 const route = useRoute();
 
@@ -22,7 +23,7 @@ const links = [
   },
   {
     title: "Resume",
-    href: "/portfolio2026/src/assets/images/resume_yanhua_huang.pdf",
+    href: resumePdf,
     ifFile: true,
   },
   {
@@ -71,13 +72,9 @@ const links = [
             :class="{ active: route.hash === link.href }"
             >{{ link.title }}</router-link
           >
-          <a
-            v-else
-            @click="closeMenu"
-            href="/portfolio2026/src/assets/images/resume_yanhua_huang.pdf"
-            target="_blank"
-            >{{ link.title }}</a
-          >
+          <a v-else @click="closeMenu" :href="link.href" target="_blank">{{
+            link.title
+          }}</a>
           <span v-if="index !== links.length - 1">/</span>
         </li>
       </ul>
